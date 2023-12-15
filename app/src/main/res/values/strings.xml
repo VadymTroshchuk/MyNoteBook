@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MyNoteBook</string>
+    <string name="add_update_fragment_title">title</string>
+    <string name="description">Description</string>
+    <string name="description_float_button" />
+    <string name="no_data_image" />
+    <string name="no_data" />
+
+
+    <string-array name="colors">
+        <item>Red</item>
+        <item>Yellow</item>
+        <item>Green</item>
+    </string-array>
+
+
+</resources>
