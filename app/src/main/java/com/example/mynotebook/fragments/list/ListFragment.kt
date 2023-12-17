@@ -23,9 +23,11 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mynotebook.R
 import com.example.mynotebook.constants.SortingData
 import com.example.mynotebook.databinding.ListFragmentBinding
+import com.example.mynotebook.db.model.NoteData
 import com.example.mynotebook.db.viewmodel.NoteViewModel
 import com.example.mynotebook.db.viewmodel.SharedViewModel
 import com.example.mynotebook.fragments.list.adapter.NoteRecycleViewAdapter
+import com.example.mynotebook.utils.observeOnce
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
@@ -39,7 +41,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val recyclerViewAdapter: NoteRecycleViewAdapter by lazy { NoteRecycleViewAdapter() }
 
-    private val toDoViewModel: NoteViewModel by viewModels()
+    private val noteViewModel: NoteViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by viewModels()
 
     @Inject
@@ -60,7 +62,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         setupRecyclerView()
         readUserSortingFromSharedPreferencesFile()
 
-        toDoViewModel.userSortingTypeLiveData.observe(viewLifecycleOwner) {
+        noteViewModel.userSortingTypeLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 SortingData.LATEST -> {
                     getDataByLatest()
@@ -87,7 +89,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                 searchView?.isSubmitButtonEnabled = true
                 searchView?.setOnQueryTextListener(this@ListFragment)
 
-                toDoViewModel.queryToSearchOnDatabaseLiveData.observe(viewLifecycleOwner) {
+                noteViewModel.queryToSearchOnDatabaseLiveData.observe(viewLifecycleOwner) {
                     if (!it.isNullOrEmpty()) {
                         try {
                             searchView?.setQuery(it, false)
@@ -95,7 +97,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                             Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
                         }
                     } else {
-                        toDoViewModel.userSortingTypeLiveData.observe(viewLifecycleOwner) { sort ->
+                        noteViewModel.userSortingTypeLiveData.observe(viewLifecycleOwner) { sort ->
                             when (sort) {
                                 SortingData.LATEST -> {
                                     getDataByLatest()
@@ -113,9 +115,9 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                     R.id.menu_priority_latest -> {
                         saveUserSortingOnSharedPreferencesFile(SortingData.LATEST)
                     }
-//                    R.id.menu_delete_all -> {
-//                        confirmDeleteAllData()
-//                    }
+                    R.id.menu_delete_all -> {
+                        confirmDeleteAllData()
+                    }
                 }
                 return true
             }
@@ -143,9 +145,9 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         val query = savedInstanceState?.getString("query")
 
         if (!query.isNullOrEmpty()) {
-            toDoViewModel.setQueryForSearchOnDataBase(query)
+            noteViewModel.setQueryForSearchOnDataBase(query)
         } else {
-            toDoViewModel.setQueryForSearchOnDataBase(null)
+            noteViewModel.setQueryForSearchOnDataBase(null)
         }
     }
 
@@ -154,14 +156,17 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.recyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-//        binding.recyclerView.itemAnimator = SlideInUpAnimator().apply {
+        //        binding.recyclerView.itemAnimator = SlideInUpAnimator().apply {
 //            addDuration = 200
 //        }
 //        swipeToDelete(binding.recyclerView)
+
+
+
     }
 
     private fun getDataByLatest() {
-        toDoViewModel.getAllData.observe(viewLifecycleOwner) {
+        noteViewModel.getAllData.observe(viewLifecycleOwner) {
             sharedViewModel.checkIfDatabaseIsEmpty(it)
             recyclerViewAdapter.setToDoList(it)
         }
@@ -169,22 +174,22 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
 
-//    private fun confirmDeleteAllData() {
-//        val builder = AlertDialog.Builder(requireContext())
-//        builder.setTitle(getString(R.string.remove_everything))
-//        builder.setMessage(getString(R.string.are_you_sure_to_remove_everything))
-//        builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
-//            toDoViewModel.deleteAllData()
-//            Toast.makeText(
-//                requireContext(),
-//                getString(R.string.everything_removed_successfully),
-//                Toast.LENGTH_SHORT
-//            )
-//                .show()
-//        }
-//        builder.setNegativeButton(getString(R.string.no)) { _, _ -> }
-//        builder.show()
-//    }
+    private fun confirmDeleteAllData() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(getString(R.string.remove_everything))
+        builder.setMessage(getString(R.string.are_you_sure_to_remove_everything))
+        builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
+            noteViewModel.deleteAllData()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.everything_removed_successfully),
+                Toast.LENGTH_SHORT
+            )
+                .show()
+        }
+        builder.setNegativeButton(getString(R.string.no)) { _, _ -> }
+        builder.show()
+    }
 
     private fun showEmptyDatabaseViews(emptyDatabase: Boolean) {
         if (emptyDatabase) {
@@ -199,11 +204,11 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrEmpty()) {
             searchQuery = query
-            toDoViewModel.setQueryForSearchOnDataBase(query)
-//            searchFromDatabase(query)
+            noteViewModel.setQueryForSearchOnDataBase(query)
+            searchFromDatabase(query)
         } else {
             searchQuery = null
-            toDoViewModel.setQueryForSearchOnDataBase(null)
+            noteViewModel.setQueryForSearchOnDataBase(null)
         }
         return true
     }
@@ -211,57 +216,57 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onQueryTextChange(newText: String?): Boolean {
         if (!newText.isNullOrEmpty()) {
             searchQuery = newText
-            toDoViewModel.setQueryForSearchOnDataBase(newText)
+            noteViewModel.setQueryForSearchOnDataBase(newText)
 //            searchFromDatabase(newText)
         } else {
             searchQuery = null
-            toDoViewModel.setQueryForSearchOnDataBase(null)
+            noteViewModel.setQueryForSearchOnDataBase(null)
         }
         return true
     }
 
-//    private fun searchFromDatabase(query: String) {
-//        if (query.isNotEmpty()) {
-//            val searchQuery = "%$query%"
-//
-//            toDoViewModel.searchOnDatabase(searchQuery).observeOnce(viewLifecycleOwner) { list ->
-//                list?.let {
-//                    recyclerViewAdapter.setToDoList(it)
-//                }
-//            }
-//        }
-//    }
+    private fun searchFromDatabase(query: String) {
+        if (query.isNotEmpty()) {
+            val searchQuery = "%$query%"
 
-//    private fun swipeToDelete(recyclerView: RecyclerView) {
-//        val swipeToDeleteCallback = object : SwipeToDelete() {
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//                val itemToDelete = recyclerViewAdapter.toDoDataList[viewHolder.adapterPosition]
-//                toDoViewModel.deleteData(itemToDelete)
-//                recyclerViewAdapter.notifyItemRemoved(viewHolder.adapterPosition)
-//                recyclerViewAdapter.notifyItemRangeRemoved(
-//                    0,
-//                    recyclerViewAdapter.toDoDataList.size - 1
-//                )
-//                toDoViewModel.setUserSortingType(userSortingFromSharedPreferences)
-//                restoreDeletedData(viewHolder.itemView, itemToDelete)
-//            }
-//        }
-//        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
-//        itemTouchHelper.attachToRecyclerView(recyclerView)
-//    }
+            noteViewModel.searchOnDatabase(searchQuery).observeOnce(viewLifecycleOwner) { list ->
+                list?.let {
+                    recyclerViewAdapter.setToDoList(it)
+                }
+            }
+        }
+    }
 
-//    private fun restoreDeletedData(view: View, deletedItem: ToDoData) {
-//        val snackBar = Snackbar.make(
-//            view,
-//            "'${deletedItem.title}' ${getString(R.string.deleted)}",
-//            Snackbar.LENGTH_LONG
-//        )
-//        snackBar.setAction(getString(R.string.undo)) {
-//            toDoViewModel.insertData(deletedItem)
-//            toDoViewModel.setUserSortingType(userSortingFromSharedPreferences)
-//        }
-//        snackBar.show()
-//    }
+    private fun swipeToDelete(recyclerView: RecyclerView) {
+        val swipeToDeleteCallback = object : SwipeToDelete() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val itemToDelete = recyclerViewAdapter.noteDataList[viewHolder.adapterPosition]
+                noteViewModel.deleteData(itemToDelete)
+                recyclerViewAdapter.notifyItemRemoved(viewHolder.adapterPosition)
+                recyclerViewAdapter.notifyItemRangeRemoved(
+                    0,
+                    recyclerViewAdapter.noteDataList.size - 1
+                )
+                noteViewModel.setUserSortingType(userSortingFromSharedPreferences)
+                restoreDeletedData(viewHolder.itemView, itemToDelete)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    private fun restoreDeletedData(view: View, deletedItem: NoteData) {
+        val snackBar = Snackbar.make(
+            view,
+            "'${deletedItem.title}' ${getString(R.string.deleted)}",
+            Snackbar.LENGTH_LONG
+        )
+        snackBar.setAction(getString(R.string.undo)) {
+            noteViewModel.insertData(deletedItem)
+            noteViewModel.setUserSortingType(userSortingFromSharedPreferences)
+        }
+        snackBar.show()
+    }
 
     private fun saveUserSortingOnSharedPreferencesFile(sortingData: String) {
         try {
@@ -284,7 +289,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             userSortingFromSharedPreferences =
                 sharedPreferences.getString(sortingDataForUser, SortingData.LATEST).toString()
 
-            toDoViewModel.setUserSortingType(SortingData.LATEST)
+            noteViewModel.setUserSortingType(SortingData.LATEST)
 
         } catch (e: Exception) {
             Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
