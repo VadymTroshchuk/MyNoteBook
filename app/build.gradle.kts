@@ -11,6 +11,11 @@ android {
     namespace = "com.example.mynotebook"
     compileSdk = 34
 
+    buildFeatures{
+        viewBinding = true
+        dataBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.mynotebook"
         minSdk = 26
@@ -51,10 +56,12 @@ dependencies {
 
 
 
+
+
     // Kotlin Navigation
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
 
     // Use specific versions instead of variables
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
