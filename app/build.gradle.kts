@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("kotlin-parcelize")
+
 }
 
 android {
@@ -65,15 +67,15 @@ dependencies {
     // coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     // for use coroutines
-    implementation ("androidx.room:room-ktx:2.4.3")
-    kapt ("androidx.room:room-compiler:2.4.3")
+    implementation ("androidx.room:room-ktx:2.6.1")
+    kapt ("androidx.room:room-compiler:2.6.1")
 
     // recycler view animation
     implementation ("jp.wasabeef:recyclerview-animators:4.0.2")
 
 
     // for Dagger Hilt
-    implementation ("com.google.dagger:hilt-android:2.44")
-    kapt ("com.google.dagger:hilt-compiler:2.44")
+    implementation ("com.google.dagger:hilt-android:2.48.1")
+    kapt ("com.google.dagger:hilt-compiler:2.48.1")
 
 }
