@@ -68,7 +68,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         }
 
-
+//        hideKeyboard(requireActivity())
 
         return binding.root
     }
@@ -113,7 +113,9 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                     R.id.menu_priority_latest -> {
                         saveUserSortingOnSharedPreferencesFile(SortingData.LATEST)
                     }
-
+//                    R.id.menu_delete_all -> {
+//                        confirmDeleteAllData()
+//                    }
                 }
                 return true
             }
@@ -152,7 +154,10 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.recyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-
+//        binding.recyclerView.itemAnimator = SlideInUpAnimator().apply {
+//            addDuration = 200
+//        }
+//        swipeToDelete(binding.recyclerView)
     }
 
     private fun getDataByLatest() {
@@ -164,7 +169,22 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
 
-
+//    private fun confirmDeleteAllData() {
+//        val builder = AlertDialog.Builder(requireContext())
+//        builder.setTitle(getString(R.string.remove_everything))
+//        builder.setMessage(getString(R.string.are_you_sure_to_remove_everything))
+//        builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
+//            toDoViewModel.deleteAllData()
+//            Toast.makeText(
+//                requireContext(),
+//                getString(R.string.everything_removed_successfully),
+//                Toast.LENGTH_SHORT
+//            )
+//                .show()
+//        }
+//        builder.setNegativeButton(getString(R.string.no)) { _, _ -> }
+//        builder.show()
+//    }
 
     private fun showEmptyDatabaseViews(emptyDatabase: Boolean) {
         if (emptyDatabase) {
@@ -192,7 +212,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         if (!newText.isNullOrEmpty()) {
             searchQuery = newText
             toDoViewModel.setQueryForSearchOnDataBase(newText)
-
+//            searchFromDatabase(newText)
         } else {
             searchQuery = null
             toDoViewModel.setQueryForSearchOnDataBase(null)
@@ -200,7 +220,48 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         return true
     }
 
+//    private fun searchFromDatabase(query: String) {
+//        if (query.isNotEmpty()) {
+//            val searchQuery = "%$query%"
+//
+//            toDoViewModel.searchOnDatabase(searchQuery).observeOnce(viewLifecycleOwner) { list ->
+//                list?.let {
+//                    recyclerViewAdapter.setToDoList(it)
+//                }
+//            }
+//        }
+//    }
 
+//    private fun swipeToDelete(recyclerView: RecyclerView) {
+//        val swipeToDeleteCallback = object : SwipeToDelete() {
+//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+//                val itemToDelete = recyclerViewAdapter.toDoDataList[viewHolder.adapterPosition]
+//                toDoViewModel.deleteData(itemToDelete)
+//                recyclerViewAdapter.notifyItemRemoved(viewHolder.adapterPosition)
+//                recyclerViewAdapter.notifyItemRangeRemoved(
+//                    0,
+//                    recyclerViewAdapter.toDoDataList.size - 1
+//                )
+//                toDoViewModel.setUserSortingType(userSortingFromSharedPreferences)
+//                restoreDeletedData(viewHolder.itemView, itemToDelete)
+//            }
+//        }
+//        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+//        itemTouchHelper.attachToRecyclerView(recyclerView)
+//    }
+
+//    private fun restoreDeletedData(view: View, deletedItem: ToDoData) {
+//        val snackBar = Snackbar.make(
+//            view,
+//            "'${deletedItem.title}' ${getString(R.string.deleted)}",
+//            Snackbar.LENGTH_LONG
+//        )
+//        snackBar.setAction(getString(R.string.undo)) {
+//            toDoViewModel.insertData(deletedItem)
+//            toDoViewModel.setUserSortingType(userSortingFromSharedPreferences)
+//        }
+//        snackBar.show()
+//    }
 
     private fun saveUserSortingOnSharedPreferencesFile(sortingData: String) {
         try {
