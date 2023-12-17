@@ -7,7 +7,7 @@
     <string name="no_data" />
     <string name="added_successfully">Added Successfully</string>
     <string name="please_fill_out_all_fields">Please fill out all fields!</string>
-
+    <string name="search_hint">Search…</string>
 
     <string-array name="colors">
         <item>Red</item>
@@ -20,6 +20,10 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add" />
+    <string name="search">Search\n</string>
+    <string name="sort_by">Sort By\n</string>
+    <string name="priority_latest">Last Created</string>
+    <string name="delete_all">Delete All Notes</string>
 
 
 </resources>

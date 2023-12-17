@@ -1,4 +1,4 @@
-package com.example.mynotebook.fragments.list
+package com.example.mynotebook.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -19,7 +19,6 @@ import com.example.mynotebook.databinding.AddFragmentBinding
 import com.example.mynotebook.db.model.NoteData
 import com.example.mynotebook.db.viewmodel.NoteViewModel
 import com.example.mynotebook.db.viewmodel.SharedViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
 class AddFragment : Fragment() {
 

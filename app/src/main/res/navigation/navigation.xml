@@ -6,7 +6,7 @@
     app:startDestination="@id/listFragment">
     <fragment
         android:id="@+id/addFragment2"
-        android:name="com.example.mynotebook.fragments.list.AddFragment"
+        android:name="com.example.mynotebook.fragments.AddFragment"
         android:label="add_fragment"
         tools:layout="@layout/add_fragment" >
         <action
