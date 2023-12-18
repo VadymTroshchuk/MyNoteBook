@@ -29,6 +29,9 @@ class AddFragment : Fragment() {
     private val noteViewModel: NoteViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by viewModels()
 
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

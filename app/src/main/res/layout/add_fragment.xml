@@ -23,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:hint="@string/add_update_fragment_title"
-            android:textColorHint="@color/text_color_hint_for_add_and_update_fragment"
+            android:textColorHint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +34,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_input"
-                android:textColor="@color/color_of_ed_in_add_and_update_fragment"
-                android:padding="4dp"
                 android:inputType="text"
-                />
+                app:hintTextColor="@color/white"
+                android:padding="4dp"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
@@ -60,7 +60,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:hint="@string/description"
-            android:textColorHint="@color/text_color_hint_for_add_and_update_fragment"
+            android:textColorHint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -71,11 +71,12 @@
                 android:id="@+id/ed_add_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:hintTextColor="@color/white"
                 android:background="@drawable/custom_input"
-                android:textColor="@color/color_of_ed_in_add_and_update_fragment"
-                android:padding="20dp"
                 android:gravity="top|start"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:padding="20dp"
+                android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

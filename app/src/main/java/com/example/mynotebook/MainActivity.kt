@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
 
         supportActionBar?.apply {
-            val color: Int = getColor(R.color.black)
+            val color: Int = getColor(R.color.whiteBlack)
             val colorDrawable = ColorDrawable(color)
             setBackgroundDrawable(colorDrawable)
 
@@ -39,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
 
 
 

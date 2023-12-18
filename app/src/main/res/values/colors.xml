@@ -6,7 +6,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
-    <color name="colorPrimary">#FF000000</color>
+    <color name="colorPrimary">#71657C</color>
 
     <color name="colorPrimaryForActionBar">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
@@ -21,8 +21,8 @@
     <color name="no_data_text_color">#4B4B4B</color>
 
     <!--    for add and update fragments-->
-    <color name="color_of_ed_in_add_and_update_fragment">#FF000000</color>
-    <color name="text_color_hint_for_add_and_update_fragment">#787878</color>
+    <color name="color_of_ed_in_add_and_update_fragment">#FFFFFFFF</color>
+    <color name="text_color_hint_for_add_and_update_fragment">#FFFFFFFF</color>
     <color name="background_stroke_color_of_ed_in_fragment">#474A62</color>
     <color name="background_stroke_color_of_ed_in_fragment_on_state_focused">#E6E6E6</color>
     <color name="root_background_for_add_and_update_fragments">#262833</color>
@@ -30,7 +30,7 @@
     <!--    for item in recyclerview-->
     <color name="item_background_color_in_recyclerview">#FFFFFFFF</color>
     <color name="item_stroke_color_in_recyclerview">#E6E6E6</color>
-    <color name="text_color_in_item_in_recyclerview">#4B4B4B</color>
+    <color name="text_color_in_item_in_recyclerview">#E6E6E6</color>
 
     <color name="menu_item_background">#FFFFFF</color>
 
@@ -49,4 +49,11 @@
 
 
     <color name="background_for_splash">#FFFFFF</color>
+
+
+
+
+
+
+
 </resources>
