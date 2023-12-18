@@ -21,14 +21,17 @@ import com.example.mynotebook.databinding.UpdateFragmentBinding
 import com.example.mynotebook.db.model.NoteData
 import com.example.mynotebook.db.viewmodel.NoteViewModel
 import com.example.mynotebook.db.viewmodel.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class UpdateFragment : Fragment() {
 
     private lateinit var binding: UpdateFragmentBinding
 
     private val args by navArgs<UpdateFragmentArgs>()
 
-    private val toDoViewModel: NoteViewModel by viewModels()
+    private val noteViewModel: NoteViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreateView(
@@ -92,7 +95,7 @@ class UpdateFragment : Fragment() {
                 description
             )
 
-            toDoViewModel.updateData(newItem)
+            noteViewModel.updateData(newItem)
             Toast.makeText(requireContext(), "'${newItem.title}' ${getString(R.string.updated_successfully)}", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         } else {
@@ -106,7 +109,7 @@ class UpdateFragment : Fragment() {
         builder.setTitle("${getString(R.string.remove)} '${args.currentItem.title}'!")
         builder.setMessage("${getString(R.string.are_you_sure_to_remove)} '${args.currentItem.title}'?")
         builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
-            toDoViewModel.deleteData(args.currentItem)
+            noteViewModel.deleteData(args.currentItem)
             Toast.makeText(requireContext(), "'${args.currentItem.title}' ${getString(R.string.removed)}", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_updateFragment_to_listFragment)
         }

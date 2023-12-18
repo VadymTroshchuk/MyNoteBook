@@ -27,9 +27,9 @@
 
 
     <string-array name="colors">
-        <item>Red</item>
-        <item>Yellow</item>
-        <item>Green</item>
+        <item>Red Colour</item>
+        <item>Yellow Colour</item>
+        <item>Green Colour</item>
     </string-array>
 
 

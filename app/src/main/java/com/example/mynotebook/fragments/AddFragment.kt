@@ -19,7 +19,9 @@ import com.example.mynotebook.databinding.AddFragmentBinding
 import com.example.mynotebook.db.model.NoteData
 import com.example.mynotebook.db.viewmodel.NoteViewModel
 import com.example.mynotebook.db.viewmodel.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddFragment : Fragment() {
 
     private lateinit var binding: AddFragmentBinding

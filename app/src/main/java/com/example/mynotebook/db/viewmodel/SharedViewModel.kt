@@ -22,8 +22,8 @@ class SharedViewModel @Inject constructor(private val context: Application) : Vi
     private var _emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
     val emptyDatabase: LiveData<Boolean> get() = _emptyDatabase
 
-    fun checkIfDatabaseIsEmpty(toDoDataList: List<NoteData>) {
-        _emptyDatabase.value = toDoDataList.isEmpty()
+    fun checkIfDatabaseIsEmpty(noteDataList: List<NoteData>) {
+        _emptyDatabase.value = noteDataList.isEmpty()
     }
 
     val listener: AdapterView.OnItemSelectedListener = object :
