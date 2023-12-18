@@ -56,6 +56,29 @@ class NoteRecycleViewAdapter : RecyclerView.Adapter<NoteRecycleViewAdapter.NoteV
                     binding.tvViewPriorityIndicator.backgroundTintList =
                         ContextCompat.getColorStateList(itemView.context, R.color.green)
                 }
+                Color.WHITE -> {
+                    binding.tvViewPriorityIndicator.backgroundTintList =
+                        ContextCompat.getColorStateList(itemView.context, R.color.white)
+                }
+                Color.ORANGE -> {
+                    binding.tvViewPriorityIndicator.backgroundTintList =
+                        ContextCompat.getColorStateList(itemView.context, R.color.orange)
+                }
+
+                Color.PURPLE -> {
+                    binding.tvViewPriorityIndicator.backgroundTintList =
+                        ContextCompat.getColorStateList(itemView.context, R.color.purple)
+                }
+
+                Color.VIOLET -> {
+                    binding.tvViewPriorityIndicator.backgroundTintList =
+                        ContextCompat.getColorStateList(itemView.context, R.color.violet)
+                }
+                Color.BLUE -> {
+                    binding.tvViewPriorityIndicator.backgroundTintList =
+                        ContextCompat.getColorStateList(itemView.context, R.color.blue)
+                }
+
             }
         }
 

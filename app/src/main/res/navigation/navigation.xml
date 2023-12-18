@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/addFragment2"
         android:name="com.example.mynotebook.fragments.AddFragment"
-        android:label="add_fragment"
+
         tools:layout="@layout/add_fragment" >
         <action
             android:id="@+id/action_addFragment2_to_listFragment"
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.example.mynotebook.fragments.list.ListFragment"
-        android:label="list_fragment"
+
         tools:layout="@layout/list_fragment" >
         <action
             android:id="@+id/action_listFragment_to_addFragment2"
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.example.mynotebook.fragments.UpdateFragment"
-        android:label="update_fragment_"
+
         tools:layout="@layout/update_fragment_" >
         <action
             android:id="@+id/action_updateFragment_to_listFragment"

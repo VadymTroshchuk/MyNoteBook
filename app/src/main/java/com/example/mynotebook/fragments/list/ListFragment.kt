@@ -1,7 +1,9 @@
 package com.example.mynotebook.fragments.list
 
+import android.app.ActionBar
 import android.app.AlertDialog
 import android.content.SharedPreferences
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,6 +29,7 @@ import com.example.mynotebook.db.model.NoteData
 import com.example.mynotebook.db.viewmodel.NoteViewModel
 import com.example.mynotebook.db.viewmodel.SharedViewModel
 import com.example.mynotebook.fragments.list.adapter.NoteRecycleViewAdapter
+import com.example.mynotebook.utils.hideKeyboard
 import com.example.mynotebook.utils.observeOnce
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,6 +65,9 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         setupRecyclerView()
         readUserSortingFromSharedPreferencesFile()
 
+
+
+
         noteViewModel.userSortingTypeLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 SortingData.LATEST -> {
@@ -70,13 +76,15 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         }
 
-//        hideKeyboard(requireActivity())
+        hideKeyboard(requireActivity())
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
@@ -159,7 +167,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         //        binding.recyclerView.itemAnimator = SlideInUpAnimator().apply {
 //            addDuration = 200
 //        }
-//        swipeToDelete(binding.recyclerView)
+        swipeToDelete(binding.recyclerView)
 
 
 

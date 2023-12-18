@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
 
         supportActionBar?.apply {
+            title = "Записник"
             val color: Int = getColor(R.color.whiteBlack)
             val colorDrawable = ColorDrawable(color)
             setBackgroundDrawable(colorDrawable)

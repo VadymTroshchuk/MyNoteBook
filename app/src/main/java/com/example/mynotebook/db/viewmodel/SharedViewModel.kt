@@ -68,8 +68,69 @@ class SharedViewModel @Inject constructor(private val context: Application) : Vi
                         Log.d(Tag.TAG, e.message.toString())
                     }
                 }
+                3 -> {
+                    try {
+                        (parent?.getChildAt(0) as TextView).setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.white
+                            )
+                        )
+                    } catch (e: Exception) {
+                        Log.d(Tag.TAG, e.message.toString())
+                    }
+                }
+                4 -> {
+                    try {
+                        (parent?.getChildAt(0) as TextView).setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.orange
+                            )
+                        )
+                    } catch (e: Exception) {
+                        Log.d(Tag.TAG, e.message.toString())
+                    }
+                }
+                5 -> {
+                    try {
+                        (parent?.getChildAt(0) as TextView).setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.purple
+                            )
+                        )
+                    } catch (e: Exception) {
+                        Log.d(Tag.TAG, e.message.toString())
+                    }
+                }
+                6 -> {
+                    try {
+                        (parent?.getChildAt(0) as TextView).setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.violet
+                            )
+                        )
+                    } catch (e: Exception) {
+                        Log.d(Tag.TAG, e.message.toString())
+                    }
+                }
+                7 -> {
+                    try {
+                        (parent?.getChildAt(0) as TextView).setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.blue
+                            )
+                        )
+                    } catch (e: Exception) {
+                        Log.d(Tag.TAG, e.message.toString())
+                    }
+                }
             }
         }
+
 
         override fun onNothingSelected(parent: AdapterView<*>?) {}
     }
@@ -80,18 +141,34 @@ class SharedViewModel @Inject constructor(private val context: Application) : Vi
 
     fun parseToColor(color: String): Color {
         return when (color) {
-            "Red Colour" -> {
+            "Червоний" -> {
                 Color.RED
             }
 
-            "Yellow Colour" -> {
+            "Жовтий" -> {
                 Color.YELLOW
             }
 
-            "Green Colour" -> {
+            "Зелений" -> {
                 Color.GREEN
             }
+            "Білий" -> {
+                Color.WHITE
+            }
+            "Помаранчевий" -> {
+                Color.ORANGE
+            }
 
+            "Фіолетовий" -> {
+                Color.PURPLE
+            }
+
+            "Рожевий" -> {
+                Color.VIOLET
+            }
+            "Блакитний" -> {
+                Color.BLUE
+            }
             else -> {
                 Color.RED
             }
@@ -103,6 +180,12 @@ class SharedViewModel @Inject constructor(private val context: Application) : Vi
             Color.RED -> 0
             Color.YELLOW -> 1
             Color.GREEN -> 2
+            Color.WHITE -> 3
+            Color.ORANGE -> 4
+            Color.PURPLE -> 5
+            Color.VIOLET -> 6
+            Color.BLUE -> 7
+
         }
     }
 }

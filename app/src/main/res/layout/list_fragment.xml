@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
     android:background="@color/root_background_for_add_and_update_fragments"
     android:id="@+id/constraint_layout_container_list_of_to_do"
@@ -42,7 +41,7 @@
         android:id="@+id/no_data_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0.5"
+        android:alpha="0.8"
         android:contentDescription="@string/no_data_image"
         android:scaleType="centerInside"
         android:src="@drawable/no_data_icon"

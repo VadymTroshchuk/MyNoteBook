@@ -6,6 +6,12 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
+    <color name="orange">#FFA500</color>
+    <color name="purple">#800080</color>
+    <color name="violet">#EE82EE</color>
+    <color name="blue">#448AFF</color>
+
+
     <color name="colorPrimary">#71657C</color>
 
     <color name="colorPrimaryForActionBar">#3F51B5</color>

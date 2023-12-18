@@ -1,44 +1,62 @@
 <resources>
     <string name="app_name">MyNoteBook</string>
-    <string name="add_update_fragment_title">title</string>
-    <string name="description">Description</string>
+    <string name="add_update_fragment_title">Заголовок</string>
+    <string name="description">Опис</string>
     <string name="description_float_button" />
     <string name="no_data_image" />
     <string name="no_data" />
-    <string name="added_successfully">Added Successfully</string>
-    <string name="please_fill_out_all_fields">Please fill out all fields!</string>
-    <string name="search_hint">Search…</string>
+    <string name="added_successfully">Додано Успішно</string>
+    <string name="please_fill_out_all_fields">Будь ласка, заповніть усі поля!</string>
+    <string name="search_hint">Пошук…</string>
 
 
-    <string name="remove_everything">Remove everything!</string>
-    <string name="are_you_sure_to_remove_everything">Are you sure to remove everything?</string>
-    <string name="yes">Yes</string>
-    <string name="everything_removed_successfully">Everything removed successfully!</string>
-    <string name="no">No</string>
-    <string name="deleted">deleted</string>
-    <string name="undo">Undo</string>
+    <string name="remove_everything">Видалати все!</string>
+    <string name="are_you_sure_to_remove_everything">Ви впевнені, що бажаєте все видалити?</string>
+    <string name="yes">Так</string>
+    <string name="everything_removed_successfully">Все успішно видалено!</string>
+    <string name="no">Ні</string>
+    <string name="deleted">видалено</string>
+    <string name="undo">Відмінити</string>
 
-    <string name="updated_successfully">updated successfully</string>
-    <string name="remove">Remove</string>
-    <string name="are_you_sure_to_remove">Are you sure to remove</string>
-    <string name="removed">removed</string>
+    <string name="updated_successfully">Оновлено Успішно</string>
+    <string name="remove">Видалити</string>
+    <string name="are_you_sure_to_remove">Ви впевнені, що бажаєте видалити?</string>
+    <string name="removed">видалено</string>
 
+    "Помаранчевий" -> {
+    Color.ORANGE
+    }
 
+    "Фіолетовий" -> {
+    Color.PURPLE
+    }
+
+    "Рожевий" -> {
+    Color.VIOLET
+    }
+    "Блакитний" -> {
+    Color.BLUE
+    }
 
 
     <string-array name="colors">
-        <item>Red Colour</item>
-        <item>Yellow Colour</item>
-        <item>Green Colour</item>
+        <item>Червоний</item>
+        <item>Жовтий</item>
+        <item>Зелений</item>
+        <item>Білий</item>
+        <item>Помаранчевий</item>
+        <item>Фіолетовий</item>
+        <item>Рожевий</item>
+        <item>Блакитний</item>
     </string-array>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add" />
-    <string name="search">Search\n</string>
-    <string name="sort_by">Sort By\n</string>
-    <string name="priority_latest">Last Created</string>
-    <string name="delete_all">Delete All Notes</string>
+    <string name="search">Пошук\n</string>
+    <string name="sort_by">Відсортувати По\n</string>
+    <string name="priority_latest">Останнє створення</string>
+    <string name="delete_all">Видалити всі нотатки</string>
     <string name="save" />
     <string name="delete" />
 
